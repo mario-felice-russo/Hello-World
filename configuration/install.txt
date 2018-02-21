@@ -7,12 +7,16 @@ npm install grunt-exec --save-dev
 npm install grunt-contrib-watch --save-dev
 
 grunt
+
+// Esecuzione di Chrome in modalità debug, per attach con VSCode
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
 
+// Aggiungi all'ambiente le credenziali e memorizzale nel Gestore Credenziali di Windows
 git config --global credential.helper wincred
 git config --global user.email "mario.felice.russo@outlook.it"
 git config --global user.name "mario-felice-russo"
 
+// Inizializzazione repository
 cd mg3.typescript
 git init
 git add .                               # if you want to commit everything. Otherwise use .gitconfig files
@@ -22,4 +26,5 @@ git remote add origin https://github.com/mario-felice-russo/Portfolio/
 git remote show origin                  # if everything is ok, you will see your remote
 git push -u origin master               # assuming your are on the master branch.
 
+// Compilazione in TS
 tsc --sourceMap true --outFile .\Portfolio\wwwroot\hello.js .\Portfolio\app\hello.ts
