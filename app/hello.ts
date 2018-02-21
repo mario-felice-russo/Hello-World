@@ -1,153 +1,84 @@
-namespace FirstNameSpace {
-    class NotExported {
+enum PersonCategory {
+    Infant,
+    Child,
+    Adult
+}
+
+interface IPerson {
+    Category: PersonCategory;
+    canSignContracts(): boolean;
+    printDetails(): void;
+}
+
+abstract class Person implements IPerson {
+    Category: PersonCategory;
+    private DateOfBirth: Date;
+
+    constructor(dateOfBirth: Date) {
+        this.DateOfBirth = dateOfBirth;
     }
 
-    export class NameSpaceClass {
-        id: number;
+    abstract canSignContracts(): boolean;
+
+    printDetails(): void {
+        console.log(`Person: `);
+        console.log(`Date of Birth  : ${this.DateOfBirth.toDateString()}`);
+        console.log(`Category       : ${PersonCategory[this.Category]}`);
+        console.log(`Can sign       : ${this.canSignContracts()}`);
     }
 }
 
-namespace SecondNameSpace {
-    export class NameSpaceClass {
-        name: string;
+class Infant extends Person {
+    constructor(dateOfBirth: Date) {
+        super(dateOfBirth);
+        this.Category = PersonCategory.Infant;
+    }
+
+    canSignContracts(): boolean { return false; }
+}
+
+class Child extends Person {
+    constructor(dateOfBirth: Date) {
+        super(dateOfBirth);
+        this.Category = PersonCategory.Child;
+    }
+
+    canSignContracts(): boolean { return false; }
+}
+
+class Adult extends Person {
+    constructor(dateOfBirth: Date) {
+        super(dateOfBirth);
+        this.Category = PersonCategory.Adult;
+    }
+
+    canSignContracts(): boolean { return true; }
+}
+
+class PersonFactory {
+    getPerson(dateOfBirth: Date): IPerson {
+        let dateNow: Date = new Date(); // defaults to now.
+        let currentMonth: number = dateNow.getMonth() + 1;
+        let currentDate: number = dateNow.getDate();
+        let dateTwoYearsAgo: Date = new Date(dateNow.getFullYear() - 2, currentMonth, currentDate);
+        let date18YearsAgo: Date = new Date(dateNow.getFullYear() - 18, currentMonth, currentDate);
+
+        if (dateOfBirth >= dateTwoYearsAgo) {
+            return new Infant(dateOfBirth);
+        }
+
+        if (dateOfBirth >= date18YearsAgo) {
+            return new Child(dateOfBirth);
+        }
+
+        return new Adult(dateOfBirth);
     }
 }
 
-window.onload = () => {
-    var unionType: string | number;
-    unionType = 1;
-    console.log(`unionType : ${unionType}`);
-    unionType = "test";
-    console.log(`unionType : ${unionType}`);
-
-    function addWithTypeGuard(
-        arg1: string | number,
-        arg2: string | number
-    ): string | number {
-        if (typeof arg1 === "string") {
-            // arg1 is treated as string within this code
-            console.log("first argument is a string");
-            return arg1 + arg2;
-        }
-        if (typeof arg1 === "number" && typeof arg2 === "number") {
-            // arg1 and arg2 are treated as numbers within this code
-            console.log("both arguments are numbers");
-            return arg1 + arg2;
-        }
-        console.log("default return");
-        return arg1.toString() + arg2.toString();
-    }
-
-    console.log(`addWithTypeGuard(1,2)=${addWithTypeGuard(1, 2)}`); // con backtick | backquote
-
-    type StringOrNumber = string | number;
-    function addWithAlias(
-        arg1: StringOrNumber,
-        arg2: StringOrNumber
-    ): string {
-        return arg1.toString() + arg2.toString();
-    }
-    console.log(`addWithAlias: ${addWithAlias(2, 3)}`);
-
-    type CallbackWithString = (message: string) => void;
-    var f: CallbackWithString = (message: string) => { console.log(message); };
-    function usingCallbackWithString(
-        callback: CallbackWithString): void {
-        callback("this is a string");
-    }
-    usingCallbackWithString(f);
-
-    //#region Interfaccie e classi
-
-    interface IOptionalProp {
-        id: number;
-        name?: string;
-    }
-    let idOnly: IOptionalProp = { id: 1 };
-    let idAndName: IOptionalProp = {
-        id: 2, name: "idAndName"
-    };
-    idAndName = idOnly;
-
-    interface IYou {
-        name: string;
-        value: number;
-    }
-
-    interface ILabelYou {
-        label: string;
-    }
-
-    interface ISize extends IYou, ILabelYou {
-        size: number;
-    }
-
-    function printLabel(labelledObj: ISize): void {
-        console.log(labelledObj.label);
-    }
-
-    let myObj: ISize = { size: 10, label: "Size 10 Object" } as ISize;
-    printLabel(myObj);
-
-    interface IPrint {
-        print();
-    }
-
-    class ClassA implements IPrint {
-        print() { console.log('ClassA.print()') };
-    }
-
-    class ClassB implements IPrint {
-        print() { console.log(`ClassB.print()`)};
-    }
-
-    function printClass( a : IPrint ) {
-        a.print();
-    }
-
-    let classA = new ClassA();
-    let classB = new ClassB();
-    printClass(classA);
-    printClass(classB);
-
-    class ClassWithConstructor {
-        id: number;
-        name: string;
-
-        constructor(_id: number, _name: string) {
-            this.id = _id;
-            this.name = _name;
-        }
-    }
-
-    var c: ClassWithConstructor = new ClassWithConstructor(1, "Nome01");
-    console.log(`Il nome di ClassWithConstructor è: ${c.name}`);
-
-    class StaticClass {
-        static printTwo() {
-            console.log(`StaticClass.printTwo() -> 2`);
-        }
-    }
-    StaticClass.printTwo();
-
-    class StaticProperty {
-        static count = 0;
-    
-        updateCount() {
-            StaticProperty.count ++;
-        }
-    }
-
-    let firstInstance = new StaticProperty();
-    console.log(`StaticProperty.count = ${StaticProperty.count}`);
-    firstInstance.updateCount();
-    console.log(`StaticProperty.count = ${StaticProperty.count}`);
-
-    let secondInstance = new StaticProperty();
-    secondInstance.updateCount();
-    console.log(`StaticProperty.count = ${StaticProperty.count}`);
-
-    let firstNameSpace = new FirstNameSpace.NameSpaceClass();
-    // let notExported = new FirstNameSpace.NotExported(); // Va in errore, NotExported non è accessibile.
-
-};
+let factory: PersonFactory = new PersonFactory();
+let p1: IPerson = factory.getPerson(new Date(2015, 0, 20));
+p1.printDetails();
+let p2: IPerson = factory.getPerson(new Date(2000, 0, 20));
+p2.printDetails();
+let p3: IPerson = factory.getPerson(new Date(1969, 0, 20));
+p3.printDetails();

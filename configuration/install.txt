@@ -7,19 +7,19 @@ npm install grunt-exec --save-dev
 npm install grunt-contrib-watch --save-dev
 
 grunt
-
 "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe" --remote-debugging-port=9222
 
-git config --global user.namemario.felice.russo@outlook.it
+git config --global credential.helper wincred
+git config --global user.email "mario.felice.russo@outlook.it"
+git config --global user.name "mario-felice-russo"
 
-git config --global credential.helper credential-wincre
-git config --global credential.helper
-
-cd "path to your repo"
+cd mg3.typescript
 git init
-git add . # if you want to commit everything. Otherwise use .gitconfig files
-git commit -m "initial commit" # If you change anything, you can add and commit again...
+git add .                               # if you want to commit everything. Otherwise use .gitconfig files
+git commit -m "initial commit"          # If you change anything, you can add and commit again...
 
 git remote add origin https://github.com/mario-felice-russo/Portfolio/
 git remote show origin                  # if everything is ok, you will see your remote
 git push -u origin master               # assuming your are on the master branch.
+
+tsc --sourceMap true --outFile .\Portfolio\wwwroot\hello.js .\Portfolio\app\hello.ts

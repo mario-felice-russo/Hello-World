@@ -1,119 +1,85 @@
-var FirstNameSpace;
-(function (FirstNameSpace) {
-    var NotExported = (function () {
-        function NotExported() {
-        }
-        return NotExported;
-    }());
-    var NameSpaceClass = (function () {
-        function NameSpaceClass() {
-        }
-        return NameSpaceClass;
-    }());
-    FirstNameSpace.NameSpaceClass = NameSpaceClass;
-})(FirstNameSpace || (FirstNameSpace = {}));
-var SecondNameSpace;
-(function (SecondNameSpace) {
-    var NameSpaceClass = (function () {
-        function NameSpaceClass() {
-        }
-        return NameSpaceClass;
-    }());
-    SecondNameSpace.NameSpaceClass = NameSpaceClass;
-})(SecondNameSpace || (SecondNameSpace = {}));
-window.onload = function () {
-    var unionType;
-    unionType = 1;
-    console.log("unionType : " + unionType);
-    unionType = "test";
-    console.log("unionType : " + unionType);
-    function addWithTypeGuard(arg1, arg2) {
-        if (typeof arg1 === "string") {
-            console.log("first argument is a string");
-            return arg1 + arg2;
-        }
-        if (typeof arg1 === "number" && typeof arg2 === "number") {
-            console.log("both arguments are numbers");
-            return arg1 + arg2;
-        }
-        console.log("default return");
-        return arg1.toString() + arg2.toString();
-    }
-    console.log("addWithTypeGuard(1,2)=" + addWithTypeGuard(1, 2));
-    function addWithAlias(arg1, arg2) {
-        return arg1.toString() + arg2.toString();
-    }
-    console.log("addWithAlias: " + addWithAlias(2, 3));
-    var f = function (message) { console.log(message); };
-    function usingCallbackWithString(callback) {
-        callback("this is a string");
-    }
-    usingCallbackWithString(f);
-    var idOnly = { id: 1 };
-    var idAndName = {
-        id: 2, name: "idAndName"
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
-    idAndName = idOnly;
-    function printLabel(labelledObj) {
-        console.log(labelledObj.label);
+})();
+var PersonCategory;
+(function (PersonCategory) {
+    PersonCategory[PersonCategory["Infant"] = 0] = "Infant";
+    PersonCategory[PersonCategory["Child"] = 1] = "Child";
+    PersonCategory[PersonCategory["Adult"] = 2] = "Adult";
+})(PersonCategory || (PersonCategory = {}));
+var Person = /** @class */ (function () {
+    function Person(dateOfBirth) {
+        this.DateOfBirth = dateOfBirth;
     }
-    var myObj = { size: 10, label: "Size 10 Object" };
-    printLabel(myObj);
-    var ClassA = (function () {
-        function ClassA() {
-        }
-        ClassA.prototype.print = function () { console.log('ClassA.print()'); };
-        ;
-        return ClassA;
-    }());
-    var ClassB = (function () {
-        function ClassB() {
-        }
-        ClassB.prototype.print = function () { console.log("ClassB.print()"); };
-        ;
-        return ClassB;
-    }());
-    function printClass(a) {
-        a.print();
+    Person.prototype.printDetails = function () {
+        console.log("Person: ");
+        console.log("Date of Birth  : " + this.DateOfBirth.toDateString());
+        console.log("Category       : " + PersonCategory[this.Category]);
+        console.log("Can sign       : " + this.canSignContracts());
+    };
+    return Person;
+}());
+var Infant = /** @class */ (function (_super) {
+    __extends(Infant, _super);
+    function Infant(dateOfBirth) {
+        var _this = _super.call(this, dateOfBirth) || this;
+        _this.Category = PersonCategory.Infant;
+        return _this;
     }
-    var classA = new ClassA();
-    var classB = new ClassB();
-    printClass(classA);
-    printClass(classB);
-    var ClassWithConstructor = (function () {
-        function ClassWithConstructor(_id, _name) {
-            this.id = _id;
-            this.name = _name;
+    Infant.prototype.canSignContracts = function () { return false; };
+    return Infant;
+}(Person));
+var Child = /** @class */ (function (_super) {
+    __extends(Child, _super);
+    function Child(dateOfBirth) {
+        var _this = _super.call(this, dateOfBirth) || this;
+        _this.Category = PersonCategory.Child;
+        return _this;
+    }
+    Child.prototype.canSignContracts = function () { return false; };
+    return Child;
+}(Person));
+var Adult = /** @class */ (function (_super) {
+    __extends(Adult, _super);
+    function Adult(dateOfBirth) {
+        var _this = _super.call(this, dateOfBirth) || this;
+        _this.Category = PersonCategory.Adult;
+        return _this;
+    }
+    Adult.prototype.canSignContracts = function () { return true; };
+    return Adult;
+}(Person));
+var PersonFactory = /** @class */ (function () {
+    function PersonFactory() {
+    }
+    PersonFactory.prototype.getPerson = function (dateOfBirth) {
+        var dateNow = new Date(); // defaults to now.
+        var currentMonth = dateNow.getMonth() + 1;
+        var currentDate = dateNow.getDate();
+        var dateTwoYearsAgo = new Date(dateNow.getFullYear() - 2, currentMonth, currentDate);
+        var date18YearsAgo = new Date(dateNow.getFullYear() - 18, currentMonth, currentDate);
+        if (dateOfBirth >= dateTwoYearsAgo) {
+            return new Infant(dateOfBirth);
         }
-        return ClassWithConstructor;
-    }());
-    var c = new ClassWithConstructor(1, "Nome01");
-    console.log("Il nome di ClassWithConstructor \u00E8: " + c.name);
-    var StaticClass = (function () {
-        function StaticClass() {
+        if (dateOfBirth >= date18YearsAgo) {
+            return new Child(dateOfBirth);
         }
-        StaticClass.printTwo = function () {
-            console.log("StaticClass.printTwo() -> 2");
-        };
-        return StaticClass;
-    }());
-    StaticClass.printTwo();
-    var StaticProperty = (function () {
-        function StaticProperty() {
-        }
-        StaticProperty.prototype.updateCount = function () {
-            StaticProperty.count++;
-        };
-        StaticProperty.count = 0;
-        return StaticProperty;
-    }());
-    var firstInstance = new StaticProperty();
-    console.log("StaticProperty.count = " + StaticProperty.count);
-    firstInstance.updateCount();
-    console.log("StaticProperty.count = " + StaticProperty.count);
-    var secondInstance = new StaticProperty();
-    secondInstance.updateCount();
-    console.log("StaticProperty.count = " + StaticProperty.count);
-    var firstNameSpace = new FirstNameSpace.NameSpaceClass();
-};
+        return new Adult(dateOfBirth);
+    };
+    return PersonFactory;
+}());
+var factory = new PersonFactory();
+var p1 = factory.getPerson(new Date(2015, 0, 20));
+p1.printDetails();
+var p2 = factory.getPerson(new Date(2000, 0, 20));
+p2.printDetails();
+var p3 = factory.getPerson(new Date(1969, 0, 20));
+p3.printDetails();
 //# sourceMappingURL=hello.js.map
