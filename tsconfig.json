@@ -1,0 +1,19 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+
+        // "emitDecoratorMetadata": true,
+        // "outDir": "wwwroot",
+        // "rootDir": "app/**/*.ts"
+    },
+    // "include": [
+    //     "**/*"
+    // ],
+    // "exclude": [
+    //     "node_modules",
+    //     "**/*.d.ts"
+    // ]
+}
