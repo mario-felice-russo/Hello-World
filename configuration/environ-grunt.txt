@@ -1,0 +1,96 @@
+Look into using grunt to automate this, there are numerous tutorials around, but here's a quick start.
+
+For a folder structure like:
+
+blah/
+blah/one.ts
+blah/two.ts
+blah/example/
+blah/example/example.ts
+blah/example/package.json
+blah/example/Gruntfile.js
+blah/example/index.html
+You can watch and work with typescript easily from the example folder with:
+
+npm install
+grunt
+With package.json:
+
+{
+  "name": "PROJECT",
+  "version": "0.0.1",
+  "author": "",
+  "description": "",
+  "homepage": "",
+  "private": true,
+  "devDependencies": {
+    "typescript": "~0.9.5",
+    "connect": "~2.12.0",
+    "grunt-ts": "~1.6.4",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-open": "~0.2.3"
+  }
+}
+And a grunt file:
+
+module.exports = function (grunt) {
+
+  // Import dependencies
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-open');
+  grunt.loadNpmTasks('grunt-ts');
+
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    connect: {
+      server: {  // <--- Run a local server on :8089
+        options: {
+          port: 8089,
+          base: './'
+        }
+      }
+    },
+    ts: {
+      lib: { // <-- compile all the files in ../ to PROJECT.js
+        src: ['../*.ts'],
+        out: 'PROJECT.js',
+        options: {
+          target: 'es3',
+          sourceMaps: false,
+          declaration: true,
+          removeComments: false
+        }
+      },
+      example: {  // <--- compile all the files in . to example.js
+        src: ['*.ts'],
+        out: 'example.js',
+        options: {
+          target: 'es3',
+          sourceMaps: false,
+          declaration: false,
+          removeComments: false
+        }
+      }
+    },
+    watch: { 
+      lib: { // <-- Watch for changes on the library and rebuild both
+        files: '../*.ts',
+        tasks: ['ts:lib', 'ts:example']
+      },
+      example: { // <--- Watch for change on example and rebuild
+        files: ['*.ts', '!*.d.ts'],
+        tasks: ['ts:example']
+      }
+    },
+    open: { // <--- Launch index.html in browser when you run grunt
+      dev: {
+        path: 'http://localhost:8089/index.html'
+      }
+    }
+  });
+
+  // Register the default tasks to run when you run grunt
+  grunt.registerTask('default', ['ts', 'connect', 'open', 'watch']);
+}
