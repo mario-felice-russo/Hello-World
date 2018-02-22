@@ -4,16 +4,16 @@
         "target": "es5",
         "module": "commonjs",
         "sourceMap": true,
-
-        // "emitDecoratorMetadata": true,
-        // "outDir": "wwwroot",
-        // "rootDir": "app/**/*.ts"
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "watch": true,
+        "outDir": "./wwwroot/**/",
     },
-    // "include": [
-    //     "**/*"
-    // ],
-    // "exclude": [
-    //     "node_modules",
-    //     "**/*.d.ts"
-    // ]
+    "include": [
+        "./app/**/*.ts",
+    ],
+    "exclude": [
+        "node_modules",
+        "wwwroot"
+    ]
 }

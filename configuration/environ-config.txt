@@ -27,4 +27,4 @@ git remote show origin                  # if everything is ok, you will see your
 git push -u origin master               # assuming your are on the master branch.
 
 // Compilazione in TS
-tsc --sourceMap true --outFile .\Portfolio\wwwroot\hello.js .\Portfolio\app\hello.ts
+tsc --sourceMap true .\Portfolio\app\hello.ts

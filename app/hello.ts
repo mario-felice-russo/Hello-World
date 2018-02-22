@@ -1,84 +1,25 @@
-enum PersonCategory {
-    Infant,
-    Child,
-    Adult
+import { IPerson, PersonFactory, Adult, Child, Infant } from "./models/persons";
+import { Grid } from "./models/grids";
+import { Employee } from "./models/properties";
+
+// let factory: PersonFactory = new PersonFactory();
+// let p1: IPerson = factory.getPerson(new Date(2015, 0, 20));
+// p1.printDetails();
+// let p2: IPerson = factory.getPerson(new Date(2000, 0, 20));
+// p2.printDetails();
+// let p3: IPerson = factory.getPerson(new Date(1969, 0, 20));
+// p3.printDetails();
+
+let grid1: Grid = new Grid(1.0);  // 1x scale
+let d1: number = grid1.calculateDistanceFromOrigin({x: 10, y: 10});
+console.log(d1.toString());
+
+let grid2: Grid = new Grid(5.0);  // 5x scale
+let d2: number = grid2.calculateDistanceFromOrigin({x: 10, y: 10});
+console.log(d2.toString());
+
+let employee: Employee = new Employee("secret passcode");
+employee.fullName = "Bob Smith";
+if (employee.fullName) {
+    console.log(employee.fullName);
 }
-
-interface IPerson {
-    Category: PersonCategory;
-    canSignContracts(): boolean;
-    printDetails(): void;
-}
-
-abstract class Person implements IPerson {
-    Category: PersonCategory;
-    private DateOfBirth: Date;
-
-    constructor(dateOfBirth: Date) {
-        this.DateOfBirth = dateOfBirth;
-    }
-
-    abstract canSignContracts(): boolean;
-
-    printDetails(): void {
-        console.log(`Person: `);
-        console.log(`Date of Birth  : ${this.DateOfBirth.toDateString()}`);
-        console.log(`Category       : ${PersonCategory[this.Category]}`);
-        console.log(`Can sign       : ${this.canSignContracts()}`);
-    }
-}
-
-class Infant extends Person {
-    constructor(dateOfBirth: Date) {
-        super(dateOfBirth);
-        this.Category = PersonCategory.Infant;
-    }
-
-    canSignContracts(): boolean { return false; }
-}
-
-class Child extends Person {
-    constructor(dateOfBirth: Date) {
-        super(dateOfBirth);
-        this.Category = PersonCategory.Child;
-    }
-
-    canSignContracts(): boolean { return false; }
-}
-
-class Adult extends Person {
-    constructor(dateOfBirth: Date) {
-        super(dateOfBirth);
-        this.Category = PersonCategory.Adult;
-    }
-
-    canSignContracts(): boolean { return true; }
-}
-
-class PersonFactory {
-    getPerson(dateOfBirth: Date): IPerson {
-        let dateNow: Date = new Date(); // defaults to now.
-        let currentMonth: number = dateNow.getMonth() + 1;
-        let currentDate: number = dateNow.getDate();
-        let dateTwoYearsAgo: Date = new Date(dateNow.getFullYear() - 2, currentMonth, currentDate);
-        let date18YearsAgo: Date = new Date(dateNow.getFullYear() - 18, currentMonth, currentDate);
-
-        if (dateOfBirth >= dateTwoYearsAgo) {
-            return new Infant(dateOfBirth);
-        }
-
-        if (dateOfBirth >= date18YearsAgo) {
-            return new Child(dateOfBirth);
-        }
-
-        return new Adult(dateOfBirth);
-    }
-}
-
-let factory: PersonFactory = new PersonFactory();
-let p1: IPerson = factory.getPerson(new Date(2015, 0, 20));
-p1.printDetails();
-let p2: IPerson = factory.getPerson(new Date(2000, 0, 20));
-p2.printDetails();
-let p3: IPerson = factory.getPerson(new Date(1969, 0, 20));
-p3.printDetails();
