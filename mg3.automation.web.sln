@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{3A437A2D-BAF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mg3.automation.web", "mg3.automation.web\mg3.automation.web.csproj", "{3A57F80E-842D-4CB8-B4DF-9592D0DBA650}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{58DD5CA2-88C4-419C-ADD4-6CD0A0A3F0E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3A57F80E-842D-4CB8-B4DF-9592D0DBA650} = {3A437A2D-BAFA-44CD-B82D-7DD68AC7A215}
+		{58DD5CA2-88C4-419C-ADD4-6CD0A0A3F0E8} = {3A437A2D-BAFA-44CD-B82D-7DD68AC7A215}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {47EF04C5-F04F-4967-955C-E91523F1C12A}

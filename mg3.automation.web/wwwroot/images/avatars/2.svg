@@ -1,0 +1,36 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!--Generator: Xara Designer (www.xara.com), SVG filter version: 6.0.0.4-->
+<svg stroke-width="0.501" stroke-linejoin="bevel" fill-rule="evenodd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" overflow="visible" width="11.999pt" height="25.468pt" viewBox="0 0 11.999 25.468">
+ <defs>
+  <radialGradient id="RadialGradient" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="3.471" gradientTransform="translate(4.292 22.379) rotate(-45.0117) scale(1 1.00086)">
+   <stop offset="0" stop-color="#00cc00"/>
+   <stop offset="0.1" stop-color="#00c800"/>
+   <stop offset="0.2" stop-color="#00c400"/>
+   <stop offset="0.3" stop-color="#00bf00"/>
+   <stop offset="0.4" stop-color="#00b900"/>
+   <stop offset="0.5" stop-color="#00b200"/>
+   <stop offset="0.6" stop-color="#00aa00"/>
+   <stop offset="0.7" stop-color="#009f00"/>
+   <stop offset="0.8" stop-color="#009200"/>
+   <stop offset="0.9" stop-color="#007f00"/>
+   <stop offset="1" stop-color="#006600"/>
+  </radialGradient>
+ </defs>
+ <g id="Document" fill="none" stroke="black" font-family="Times New Roman" font-size="16" transform="scale(1 -1)">
+  <g id="Spread" transform="translate(0 -25.468)">
+   <g id="Layer 1">
+    <g id="Group" stroke-linecap="round" stroke-width="0.755" stroke-miterlimit="79.8403193612775">
+     <g id="Group_1" stroke="none">
+      <path d="M 7.855,0.372 C 7.685,0.352 7.496,0.402 7.343,0.471 L 4.61,1.611 L 4.61,8.373 L 4.613,1.608 L 1.86,2.75 L 1.86,10.134 L 0.379,10.861 L 0.379,18.968 C 0.379,19.269 0.5,19.663 0.779,19.786 L 2.308,20.445 C 2.409,20.489 2.515,20.519 2.621,20.541 L 2.826,20.565 L 2.755,20.757 C 2.659,21.068 2.607,21.403 2.607,21.746 C 2.607,23.579 4.098,25.067 5.931,25.067 C 7.766,25.067 9.255,23.579 9.255,21.746 C 9.255,20.827 8.882,19.996 8.279,19.397 L 7.875,19.062 L 10.899,18.052 C 11.298,17.926 11.627,17.446 11.627,17.032 L 11.558,8.557 L 10.107,7.87 L 10.107,7.853 L 10.107,1.51 L 8.015,0.421 C 7.961,0.392 7.91,0.377 7.855,0.372 Z" fill="#ffffff" stroke-linejoin="round" marker-start="none" marker-end="none"/>
+      <path d="M 0.374,18.974 L 0.374,10.874 L 1.853,10.14 L 1.853,2.754 L 5.125,1.412 L 5.125,1.412 L 7.468,0.423 L 7.454,8.148 L 8.819,7.52 C 8.863,7.501 8.927,7.565 8.927,7.612 L 8.895,15.329 C 8.895,15.634 8.738,16.027 8.449,16.137 L 0.374,18.974 Z" fill="#00cc00" stroke-linejoin="miter" marker-start="none" marker-end="none"/>
+      <path d="M 11.623,17.148 L 9.748,16.206 C 9.503,16.081 9.279,15.799 9.279,15.521 L 9.299,7.175 C 9.296,6.966 9.152,6.865 9.045,6.914 L 7.981,7.363 L 7.964,0.391 L 10.108,1.517 L 10.097,7.868 L 11.569,8.541 L 11.623,17.148 Z" fill="#006600" stroke-linejoin="miter" marker-start="none" marker-end="none"/>
+      <path d="M 2.538,20.526 L 0.645,19.582 L 8.553,16.726 C 8.811,16.637 9.127,16.642 9.375,16.756 L 11.255,17.808 L 3.398,20.523 C 3.141,20.607 2.791,20.637 2.538,20.526 Z" fill="#006600" stroke-linejoin="miter" marker-start="none" marker-end="none"/>
+     </g>
+     <path d="M 7.848,0.377 C 7.68,0.357 7.491,0.411 7.335,0.477 L 4.605,1.619 L 4.605,8.378 L 4.608,1.611 L 1.857,2.755 L 1.857,10.14 L 0.377,10.869 L 0.377,18.973 C 0.377,19.277 0.495,19.668 0.774,19.792 L 2.303,20.45 C 2.4,20.494 2.508,20.526 2.617,20.546 L 2.823,20.57 L 2.75,20.763 C 2.654,21.075 2.602,21.41 2.602,21.753 C 2.602,23.584 4.092,25.074 5.926,25.074 C 7.761,25.074 9.248,23.584 9.248,21.753 C 9.248,20.834 8.876,20.004 8.274,19.404 L 7.867,19.069 L 10.896,18.062 C 11.293,17.931 11.623,17.453 11.621,17.036 L 11.552,8.562 L 10.098,7.697 L 9.149,7.143 L 10.098,7.678 L 10.098,1.518 L 8.011,0.428 C 7.961,0.401 7.907,0.384 7.848,0.377 Z" stroke="#006600" stroke-linejoin="round" marker-start="none" marker-end="none"/>
+     <path d="M 5.893,25.089 C 7.727,25.089 9.217,23.6 9.217,21.767 C 9.217,19.934 7.727,18.445 5.893,18.445 C 4.059,18.445 2.569,19.934 2.569,21.767 C 2.569,23.6 4.059,25.089 5.893,25.089 Z" stroke="#006600" stroke-linejoin="miter" marker-start="none" marker-end="none" fill="url(#RadialGradient)"/>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

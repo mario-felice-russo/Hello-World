@@ -1,0 +1,19 @@
+[
+  {
+    "outputFileName": "wwwroot/css/site.css",
+    "inputFiles": [
+      "wwwroot/css/mg3.scss"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/site.js",
+    "inputFiles": [
+      "wwwroot/vvm/mg3.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true,
+    },
+    "sourceMap": true
+  }
+]
